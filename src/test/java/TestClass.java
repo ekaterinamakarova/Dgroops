@@ -20,6 +20,8 @@ public class TestClass {
     SignIn signIn;
     Main main;
 
+
+
     @BeforeTest
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -35,16 +37,18 @@ public class TestClass {
         main=PageFactory.initElements(driver,Main.class);
 
     }
-    @Test
-    public void Test() {
+    @Test (description = "Login with credentials." )
+    public void Test() throws InterruptedException {
         Assert.assertEquals(true,true);
         initial.toSignPage();
         signIn.signin("admin@dgroops.com", "admin");
-
+        main.checking();
     }
 
     @AfterTest
     public void exit(){
         driver.quit();
     }
+
+
 }
