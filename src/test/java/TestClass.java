@@ -37,11 +37,16 @@ public class TestClass {
         main=PageFactory.initElements(driver,Main.class);
 
     }
-    @Test (description = "Login with credentials." )
-    public void Test() throws InterruptedException {
+    @Test (description = "Login with credentials" )
+    public void loginTest() {
         Assert.assertEquals(true,true);
         initial.toSignPage();
         signIn.signin("admin@dgroops.com", "admin");
+
+    }
+
+    @Test(dependsOnMethods = {"loginTest"}, description = "Checking of the Main page")
+    public void checkingTest() throws InterruptedException {
         main.checking();
     }
 
