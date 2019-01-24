@@ -16,11 +16,6 @@ public class TestClass {
     private ChromeDriver driver;
     private String baseUrl = "http://192.168.1.56:9031/";
 
-    Initial initial;
-    SignIn signIn;
-    Main main;
-
-
 
     @BeforeTest
     public void setUp() {
@@ -32,22 +27,19 @@ public class TestClass {
         options.addArguments("--no-sandbox");
         driver = new ChromeDriver(options);
         driver.get(baseUrl);
-        initial= PageFactory.initElements(driver,Initial.class);
-        signIn=PageFactory.initElements(driver,SignIn.class);
-        main=PageFactory.initElements(driver,Main.class);
-
     }
     @Test (description = "Login with credentials" )
     public void loginTest() {
-        Assert.assertEquals(true,true);
+        Initial initial = new Initial(driver);
+        SignIn signIn= new SignIn(driver);
         initial.toSignPage();
         signIn.signin("admin@dgroops.com", "admin");
-
     }
 
     @Test(dependsOnMethods = {"loginTest"}, description = "Checking of the Main page")
     public void checkingTest() throws InterruptedException {
-        main.checking();
+        Main mainpage = new Main(driver);
+        mainpage.checking();
     }
 
     @AfterTest

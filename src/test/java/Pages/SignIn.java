@@ -3,24 +3,24 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class SignIn {
 
     WebDriver driver;
     public  SignIn(WebDriver driver){
         this.driver=driver;
+        PageFactory.initElements(driver,this);
     }
 
-    private By emailField = By.cssSelector("input[name='email']");
-    private By passwordField = By.cssSelector("input[name='password']");
-    private By singInButton = By.cssSelector("button[type='submit']");
+    @FindBy(css = "input[name='email']") private WebElement email;
+    @FindBy(css = "input[name='password']") private WebElement password;
+    @FindBy(css = "button[type='submit']") private WebElement signIn;
 
     public void signin(String mail, String pass){
-        WebElement email = driver.findElement(emailField);
         email.sendKeys(mail);
-        WebElement password = driver.findElement(passwordField);
         password.sendKeys(pass);
-        WebElement signIn = driver.findElement(singInButton);
         signIn.click();
     }
 }
