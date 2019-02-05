@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 
 public class TestClass {
     private ChromeDriver driver;
-    private String baseUrl = "http://192.168.1.56:9031/";
+    private String baseUrl = "__________________";
 
 
     @BeforeTest
@@ -33,7 +33,7 @@ public class TestClass {
         Initial initial = new Initial(driver);
         SignIn signIn= new SignIn(driver);
         initial.toSignPage();
-        signIn.signin("admin@dgroops.com", "admin");
+        signIn.signin("______", "_________");
     }
 
     @Test(dependsOnMethods = {"loginTest"}, description = "Checking of the Main page")
